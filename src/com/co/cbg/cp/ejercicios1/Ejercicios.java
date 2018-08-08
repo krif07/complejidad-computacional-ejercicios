@@ -15,18 +15,23 @@ public class Ejercicios {
 		
 		llenarVector(100);
 		
-		int[][] m = llenarMatriz(5,4);
+		int[][] m = llenarMatriz(3,3);
+		int[][] m2 = llenarMatriz(3,3);
 		
-		for(int i=0; i<5; i++) {
+		int[][] m3 = multiplicarMatrices(3,3, m, m2);
+		
+		for(int i=0; i<3; i++) {
 			
 			System.out.println("-");
 			
-			for(int j=0; j<4; j++) {
+			for(int j=0; j<3; j++) {
 				
-				System.out.println(m[i][j]);
+				System.out.println(m3[i][j]);
 				
 			}			
 		}
+		
+		
 		
 	}
 	
@@ -174,7 +179,6 @@ public class Ejercicios {
 						
 			for(int col=0; col<tamCol; col++) {
 						
-				//totalFilaCol += matriz1[fila][col] * matriz2[col][fila];
 				matrizResultado[fila][col] = multiplicarFilaColumna(tamCol, fila, col, matriz1, matriz2); 
 				
 			}
