@@ -10,9 +10,23 @@ public class Ejercicios {
 			esPrimo = verificarPrimo(i);
 			System.out.println(i + " es primo " + esPrimo);
 			System.out.println("Sumatoria1 " + i + " es: " + sumatoriaEnteros(i));
-			System.out.println("Sumatoria2 " + i + " es: " + sumatoriaEnteros2(i));
+			System.out.println("Sumatoria2 " + i + " es: " + sumatoriaEnteros2(i));			
 		}
 		
+		llenarVector(100);
+		
+		int[][] m = llenarMatriz(5,4);
+		
+		for(int i=0; i<5; i++) {
+			
+			System.out.println("-");
+			
+			for(int j=0; j<4; j++) {
+				
+				System.out.println(m[i][j]);
+				
+			}			
+		}
 		
 	}
 	
@@ -52,6 +66,7 @@ public class Ejercicios {
 	/*
 	 * {Pre: num E N, num > 0 }
 	 * {Pos: sumatoriaEnteros = devuelve la sumatoria entera de 1 hasta num}
+	 * {Pos: sumatoriaEnteros2 = devuelve la sumatoria de los enteros hasta num}
 	 * */
 	/*
 	 * Complejidad: 
@@ -81,23 +96,57 @@ public class Ejercicios {
 	enteros aleatorios (puede ser de 4 cifras).*/
 	
 	/*
-	 * {Pre: }
-	 * {Pos: }
+	 * {Pre: num E N, num > 0}
+	 * {Pos: llenarVector = vector con números enteros aleatorios}
 	 * */
 	/*
 	 * Complejidad: 
+	 * 
+	 * O(num)
+	 * 
 	 * */
 	
+	public static void llenarVector(int num) {
+		
+		int[] vector = new int[num];
+		
+		for(int i=1; i<=num; i++) {
+			int n = (int) (Math.random() * 9999) + 1;
+			System.out.println("n"+i+ " = " + n);
+			vector[i-1] = n;			
+		}
+		
+		System.out.println("Vector: " + vector);
+	}
+			
 	/*Hacer una función que llene una matriz de tamaño NxM con números
 	aleatorios.*/
 	
 	/*
-	 * {Pre: }
-	 * {Pos: }
+	 * {Pre: n y m > 0, n y m E N}
+	 * {Pos: llenarMatriz = matriz de tamaño nxm con números enteros aleatorios}
 	 * */
 	/*
 	 * Complejidad: 
 	 * */
+	
+	//n: filas, m: columnas
+	public static int[][] llenarMatriz(int n, int m) {
+		
+		int[][] matriz = new int[n][m];
+		
+		for(int i=1; i<=n; i++) {
+			
+			for(int j=1; j<=m; j++) {
+				
+				int num = (int) (Math.random() * 9999) + 1;
+				matriz[i-1][j-1] = num;
+				
+			}
+		}
+		
+		return matriz;
+	}
 	
 	/*Hacer una función que reciba 2 matrices de tamaño NxM y MxP
 	respectivamente y devuelva otra matriz con la multiplicación de las dos	primeras*/
