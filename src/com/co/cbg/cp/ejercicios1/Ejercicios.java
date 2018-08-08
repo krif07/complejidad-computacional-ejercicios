@@ -128,6 +128,9 @@ public class Ejercicios {
 	 * */
 	/*
 	 * Complejidad: 
+	 * 
+	 * O(n al cuadrado)
+	 * 
 	 * */
 	
 	//n: filas, m: columnas
@@ -152,11 +155,43 @@ public class Ejercicios {
 	respectivamente y devuelva otra matriz con la multiplicación de las dos	primeras*/
 	
 	/*
-	 * {Pre: }
-	 * {Pos: }
+	 * {Pre: n,m y p > 0, n,m y p E N, n = p}
+	 * {Pos: multiplicarMatrices = multiplicación de las matrices}
 	 * */
 	/*
 	 * Complejidad: 
 	 * */
+	
+	public static int[][] multiplicarMatrices(int tamFila, int tamCol, int[][] matriz1, int[][] matriz2){
+		
+		//int tamFila = 5;
+		//int tamCol = 4;
+		int totalFilaCol = 0;
+		
+		int[][] matrizResultado = new int[tamFila][tamCol];
+		
+		for(int fila=0; fila<tamFila; fila++) {
+						
+			for(int col=0; col<tamCol; col++) {
+						
+				//totalFilaCol += matriz1[fila][col] * matriz2[col][fila];
+				matrizResultado[fila][col] = multiplicarFilaColumna(tamCol, fila, col, matriz1, matriz2); 
+				
+			}
+		}
+		
+		return matrizResultado;
+	}
+	
+	public static int multiplicarFilaColumna(int tamCol, int fila, int col, int[][] matriz1, int[][] matriz2) {
+		
+		int resultado = 0;
+		
+		for(int i=0; i<tamCol; i++) {
+			resultado += matriz1[fila][i] * matriz2[i][col];
+		}
+		
+		return resultado;
+	}
 
 }
