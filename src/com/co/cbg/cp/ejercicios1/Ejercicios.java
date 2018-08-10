@@ -15,8 +15,8 @@ public class Ejercicios {
 		
 		llenarVector(100);
 		
-		int[][] m = llenarMatriz(3,3);
-		int[][] m2 = llenarMatriz(3,3);
+		int[][] m = llenarMatriz(5,4);
+		int[][] m2 = llenarMatriz(4,3);
 		
 		int[][] m3 = multiplicarMatrices(3,3, m, m2);
 		
@@ -160,7 +160,7 @@ public class Ejercicios {
 	respectivamente y devuelva otra matriz con la multiplicación de las dos	primeras*/
 	
 	/*
-	 * {Pre: n,m y p > 0, n,m y p E N, n = p}
+	 * {Pre: n,m y p > 0, n,m y p E N}
 	 * {Pos: multiplicarMatrices = multiplicación de las matrices}
 	 * */
 	/*
