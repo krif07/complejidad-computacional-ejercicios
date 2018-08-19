@@ -4,11 +4,12 @@ public class Ejercicios {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		boolean esPrimo = false;
+		/*boolean esPrimo = false;
 		
-		for(int i=0; i<100; i++) {
+		
+		for(int i=0; i<102; i++) {
 			esPrimo = verificarPrimo(i);
-			System.out.println(i + " es primo " + esPrimo);
+			System.out.println((i)+" es primo " + esPrimo);
 			System.out.println("Sumatoria1 " + i + " es: " + sumatoriaEnteros(i));
 			System.out.println("Sumatoria2 " + i + " es: " + sumatoriaEnteros2(i));			
 		}
@@ -20,19 +21,24 @@ public class Ejercicios {
 		
 		int[][] m3 = multiplicarMatrices(3,3, m, m2);
 		
-		for(int i=0; i<3; i++) {
+		for(int i=0; i<5; i++) {
 			
 			System.out.println("-");
 			
-			for(int j=0; j<3; j++) {
+			for(int j=0; j<4; j++) {
 				
-				System.out.println(m3[i][j]);
+				System.out.println(m[i][j]);
 				
 			}			
 		}
 		
+		*/
+		int x = 51;
+		//int serie1 = serieFib(x); //1134903170
 		
+		Long serie2 = fib(x);
 		
+		System.out.println(" " + serie2);
 	}
 	
 	/*1) Hacer una función que reciba un número entero positivo y retorne 
@@ -56,7 +62,9 @@ public class Ejercicios {
 			return false;
 		}
 		
-		for(int i=2; i<num; i++) {
+		int n = (int) Math.sqrt(num) +1;
+		
+		for(int i=2; i<n; i++) {
 			if(num % i == 0) {
 				return false;
 			}
@@ -123,7 +131,20 @@ public class Ejercicios {
 		
 		System.out.println("Vector: " + vector);
 	}
-			
+	
+	public static int[] llenarVector2(int num) {
+		
+		int[] vector = new int[num];
+		
+		for(int i=1; i<=num; i++) {
+			int n = (int) (Math.random() * 9999) + 1;
+			//System.out.println("n"+i+ " = " + n);
+			vector[i-1] = n;			
+		}
+		
+		return vector;
+	}
+
 	/*Hacer una función que llene una matriz de tamaño NxM con números
 	aleatorios.*/
 	
@@ -150,6 +171,31 @@ public class Ejercicios {
 				int num = (int) (Math.random() * 9999) + 1;
 				matriz[i-1][j-1] = num;
 				
+			}
+		}
+		
+		return matriz;
+	}
+	
+	//Complejidad (n al cuadrado) disfrazado
+	public static int[][] llenarMatriz2(int n, int m){
+
+		int[][] matriz = new int[n][m];
+		
+		int i=0;
+		int j=0;
+
+		while(i<n) {
+			
+			int num = (int) (Math.random() * 9999) + 1;
+			matriz[i-1][j-1] = num;
+			
+			if(j < (m-1)) {
+				j++;
+			}
+			else {
+				j=0;
+				i++;
 			}
 		}
 		
@@ -198,4 +244,44 @@ public class Ejercicios {
 		return resultado;
 	}
 
+	//6. Calcular la serie fibonnaci para un número n
+
+	//O(2 a la n)
+	public static int serieFib(int n) {
+		
+		if(n==1) {
+			return 0;
+		}
+		if(n==2) {
+			return 1;
+		}
+		
+		return serieFib(n-1) + serieFib(n-2);
+		
+	}
+	
+	public static Long fib(int n) {
+		
+
+		if(n==1) {
+			return 0L;
+		}
+		
+		Long i = 0L;
+		Long j = 1L;
+		
+		Long t;
+		
+		for(int k=1; k < n-1; k++) {
+			
+			t = i + j;
+			i = j;
+			j = t;
+		}
+		
+		return j;
+		
+	}
 }
+
+
