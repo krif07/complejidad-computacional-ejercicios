@@ -39,6 +39,8 @@ public class Ejercicios {
 		Long serie2 = fib(x);
 		
 		System.out.println(" " + serie2);
+		
+		hallarMinimoComunMultiplo(25,28);
 	}
 	
 	/*1) Hacer una función que reciba un número entero positivo y retorne 
@@ -281,6 +283,30 @@ public class Ejercicios {
 		
 		return j;
 		
+	}
+	
+	public static int hallarMinimoComunMultiplo(int num1, int num2) {
+		
+		int resultado;
+		int mcd;
+		int mcm;
+		int aux;
+		 
+		mcd=num1;
+		aux=num2;
+		
+		do{
+		  resultado=mcd%aux;
+		  mcd=aux;
+		  aux=resultado;
+		}while(resultado!=0);
+		
+		mcm=num1*num2/mcd ;
+		
+		System.out.println("El maximo comum divisor es :" + mcd );
+		System.out.println("El minimo comum multiplo es :" + mcm );
+		
+		return mcm;
 	}
 }
 
