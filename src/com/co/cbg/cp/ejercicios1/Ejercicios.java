@@ -40,7 +40,7 @@ public class Ejercicios {
 		
 		System.out.println(" " + serie2);
 		
-		hallarMinimoComunMultiplo(25,28);
+		minimoComunMultiplo(25,28);
 	}
 	
 	/*1) Hacer una función que reciba un número entero positivo y retorne 
@@ -285,28 +285,38 @@ public class Ejercicios {
 		
 	}
 	
-	public static int hallarMinimoComunMultiplo(int num1, int num2) {
+	public static int minimoComunMultiplo(int num1, int num2) {
 		
 		int resultado;
-		int mcd;
-		int mcm;
+		int maximoComunDivisor;
+		int minimoComunMultiplo;
 		int aux;
 		 
-		mcd=num1;
+		maximoComunDivisor=num1;
 		aux=num2;
 		
 		do{
-		  resultado=mcd%aux;
-		  mcd=aux;
-		  aux=resultado;
+			resultado=maximoComunDivisor % aux;
+			maximoComunDivisor=aux;
+			aux=resultado;
 		}while(resultado!=0);
 		
-		mcm=num1*num2/mcd ;
+		minimoComunMultiplo=num1*num2/maximoComunDivisor;
 		
-		System.out.println("El maximo comum divisor es :" + mcd );
-		System.out.println("El minimo comum multiplo es :" + mcm );
+		System.out.println("El maximo comum divisor es :" + maximoComunDivisor );
+		System.out.println("El minimo comum multiplo es :" + minimoComunMultiplo );
 		
-		return mcm;
+		return minimoComunMultiplo;
+	}
+	
+	public static int minimoComunMultiploCiclos(int num1, int num2) {
+		
+		int minimoComunMultiplo = 0;
+		
+		
+		
+		return minimoComunMultiplo;
+		
 	}
 }
 
