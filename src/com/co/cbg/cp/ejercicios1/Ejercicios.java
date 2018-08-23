@@ -40,7 +40,11 @@ public class Ejercicios {
 		
 		System.out.println(" " + serie2);
 		
-		minimoComunMultiplo(25,28);
+		int num1 = 12;
+		int num2 = 14;
+		
+		minimoComunMultiplo(num1,num2);
+		minimoComunMultiploCiclos(num1,num2);
 	}
 	
 	/*1) Hacer una función que reciba un número entero positivo y retorne 
@@ -311,9 +315,55 @@ public class Ejercicios {
 	
 	public static int minimoComunMultiploCiclos(int num1, int num2) {
 		
-		int minimoComunMultiplo = 0;
+		int minimoComunMultiplo = 1;
+		int n = num1;		
+		boolean romperCiclo1 = false;
+		boolean romperCiclo2 = false;
+				
+		if(n<num2) {
+			n=num2;
+		}
 		
+		for(int i=2; i<=n; i++) {
+			
+			if(verificarPrimo(i)) {
+				//System.out.println("primo: " + i);
+				
+				do {
+					romperCiclo1=true;
+					romperCiclo2=true;
+					
+					//System.out.println("num1%i: " + num1 + "/" + i);
+					//System.out.println("num2%i: " + num2 + "/" + i);
+					
+					if(num1%i == 0) {
+						System.out.println("primo1: " + i);
+						
+						num1 = num1 / i;						
+						romperCiclo1 = false; 
+					}
+					
+					if(num2%i == 0) {
+						System.out.println("primo2: " + i);
+												
+						num2 = num2 / i;						
+						romperCiclo2 = false;
+					}
+										
+					if(romperCiclo1 && romperCiclo2) {
+						break;
+					}
+					else {
+						minimoComunMultiplo *= i;
+					}
+					
+				}while(num1!=1 && num2!=1);
+								
+			}
+						
+		}
 		
+		System.out.println("minimoComunMultiplo: " + minimoComunMultiplo);
 		
 		return minimoComunMultiplo;
 		
