@@ -66,6 +66,7 @@ public class Ordenamiento {
 	
 	public static void quickSort(Double[] vector, int indiceIzq, int indiceDer) {
 		
+		
 	}
 	
 	public static int buscarIndiceDelMenorEnVector(int[] vector, int indiceIzq, int tamVector, DatosEstadisticos datosEstadisticos) {
