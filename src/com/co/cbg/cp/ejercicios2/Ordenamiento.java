@@ -4,16 +4,36 @@ import com.co.cbg.cp.ejercicios1.Ejercicios;
 
 public class Ordenamiento {
 
+	
 	public static void main(String[] args){
 		
-		int tamVector = 100;
+		//int tamVector = 100;
 		
-		int[] vector = Ejercicios.llenarVector2(tamVector);
-		imprimirVector(vector, tamVector);
+		//int[] vector = Ejercicios.llenarVector2(tamVector);
+		//imprimirVector(vector, tamVector);
 		
 		//burbuja(vector, tamVector);
-		seleccion(vector, tamVector);
-		imprimirVector(vector, tamVector);
+		//seleccion(vector, tamVector);
+		//imprimirVector(vector, tamVector);
+		
+		//HeapSort     
+        System.out.println("Prueba HeapSort");
+        int tamVector = 10;
+        int i;    
+        /* Accept number of elements */
+        int[] vector = Ejercicios.llenarVector2(tamVector);   
+        /* llenar vector */
+        
+        /* imprimir vector */
+        System.out.println("Elementos del vector");        
+        for (i = 0; i < tamVector; i++)
+            System.out.print(vector[i]+" ");            
+        System.out.println();
+        
+        Heapsort(vector);
+        imprimirVector(vector, tamVector);
+        
+        //-------------------------
 	}
 	
 	public static void burbuja(int[] vector, int n) {
@@ -86,6 +106,47 @@ public class Ordenamiento {
 		
 		return indiceDelMenor;
 	}
+	
+	//HeapSort
+	private static int N;
+	 
+	public static void Heapsort(int vector[])
+    {       
+		heapify(vector);        
+        for (int i = N; i > 0; i--)
+        {
+            intercambiar(vector,0, i);
+            N = N-1;
+            maxheap(vector, 0);
+        }
+    }
+	
+	 public static  void heapify(int vector[])
+	 {		
+		    N = vector.length-1;
+	        for (int i = N/2; i >= 0; i--)
+	        maxheap(vector, i);       
+	 }
+	 
+	 public static void maxheap(int vector[], int i)
+	 { 
+		    int left = 2*i ;
+	        int right = 2*i + 1;
+	        int max = i;
+	        if (left <= N && vector[left] > vector[i])
+	            max = left;
+	        if (right <= N && vector[right] > vector[max])        
+	            max = right;
+	 
+	        if (max != i)
+	        {
+	            intercambiar(vector, i, max);
+	            maxheap(vector, max);
+	        }
+	  }
+	 
+	 //------------
+	
 	
 	public static void intercambiar(int[] vector, int i, int j) {
 		int temporal = vector[i];
