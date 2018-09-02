@@ -1,5 +1,7 @@
 package com.co.cbg.cp.ejercicios2;
 
+import java.time.Duration;
+import java.time.Instant;
 import com.co.cbg.cp.ejercicios1.Ejercicios;
 
 public class Ordenamiento {
@@ -46,7 +48,7 @@ public class Ordenamiento {
 	}
 	
 	public static void crearVectoresPrueba() {
-		int tamVector = 5;
+		int tamVector = 1000;
 		
 		vector = llenarVector(tamVector);
 		//Para ordenar
@@ -71,7 +73,7 @@ public class Ordenamiento {
 		seleccion(vectorSeleccion);
 		heapsort(vectorHeap);
 		
-		System.out.println("Vectores luego de ordenar por burbuja");
+		System.out.println("Vectores luego de ordenar");
 		//imprimirVector(vector);
 		imprimirVector(vectorBurbuja);
 		imprimirVector(vectorSeleccion);
@@ -249,10 +251,14 @@ class DatosEstadisticos{
 	private Long comparaciones;
 	private Long numeroIntercabios;
 	
+	Instant start;
+	
 	DatosEstadisticos(){
 		this.tamVector = 10;
 		this.comparaciones = 0L;
 		this.numeroIntercabios = 0L;
+		
+		start = Instant.now();
 	}
 	
 	public int getTamVector() {
@@ -272,9 +278,16 @@ class DatosEstadisticos{
 	}
 	
 	public void imprimirEstadisticos() {
+		
+		Instant end = Instant.now();
+		
 		System.out.println("tamaño del vector: " + getTamVector());
 		System.out.println("comparaciones: " + getComparaciones());
 		System.out.println("numeroIntercabios: " + getNumeroIntercabios());
+		
+		Duration timeElapsed = Duration.between(start, end);
+		System.out.println("Tiempo tomado: "+ timeElapsed.toMillis() +" milisegundos");
+		System.out.println();
 	}
 	
 	public Long getComparaciones() {
