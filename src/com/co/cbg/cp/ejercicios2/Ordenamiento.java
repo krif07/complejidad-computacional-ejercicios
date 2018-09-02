@@ -10,11 +10,11 @@ public class Ordenamiento {
 		//int tamVector = 100;
 		
 		//int[] vector = Ejercicios.llenarVector2(tamVector);
-		//imprimirVector(vector, tamVector);
+		//imprimirVector(vector);
 		
-		//burbuja(vector, tamVector);
-		//seleccion(vector, tamVector);
-		//imprimirVector(vector, tamVector);
+		//burbuja(vector);
+		//seleccion(vector);
+		//imprimirVector(vector);
 		
 		//HeapSort     
         System.out.println("Prueba HeapSort");
@@ -26,19 +26,24 @@ public class Ordenamiento {
         
         /* imprimir vector */
         System.out.println("Elementos del vector");        
-        for (i = 0; i < tamVector; i++)
-            System.out.print(vector[i]+" ");            
+        imprimirVector(vector);
         System.out.println();
-        
         Heapsort(vector);
-        imprimirVector(vector, tamVector);
+        imprimirVector(vector);
         
         //-------------------------
 	}
 	
-	public static void burbuja(int[] vector, int n) {
+	public static void crearVectoresPrueba() {
+		
+	}
+	
+	public static void burbuja(int[] vector) {
+		
+		int n = vector.length;
 		
 		DatosEstadisticos datosEstadisticos = new DatosEstadisticos();
+		datosEstadisticos.setTamVector(n);
 		
 		for(int i=0; i<=(n-1); i++) {
 			
@@ -57,9 +62,11 @@ public class Ordenamiento {
 		
 	}
 		
-	public static void seleccion(int[] vector, int tamVector) {
+	public static void seleccion(int[] vector) {
 		
 		DatosEstadisticos datosEstadisticos = new DatosEstadisticos();
+		int tamVector = vector.length;
+		datosEstadisticos.setTamVector(tamVector);
 
 		int indiceDelMenor = 0;
 		int nuevoLimiteCalculado = tamVector - 1;
@@ -110,6 +117,7 @@ public class Ordenamiento {
 	 
 	public static void Heapsort(int vector[]){       
 		DatosEstadisticos datosEstadisticos = new DatosEstadisticos();
+		datosEstadisticos.setTamVector(vector.length);
 		
 		heapify(vector, datosEstadisticos);        
         for (int i = N; i > 0; i--){
@@ -162,7 +170,9 @@ public class Ordenamiento {
 		datosEstadisticos.incrementarNumeroIntercambios();
 	}
 	
-	public static void imprimirVector(int[] vector, int n) {
+	public static void imprimirVector(int[] vector) {
+		
+		int n = vector.length;
 		
 		System.out.print("[");
 		for(int i=0; i<n; i++) {
@@ -176,14 +186,24 @@ public class Ordenamiento {
 
 class DatosEstadisticos{
 	
+	private int tamVector;
 	private Long comparaciones;
 	private Long numeroIntercabios;
 	
 	DatosEstadisticos(){
+		this.tamVector = 10;
 		this.comparaciones = 0L;
 		this.numeroIntercabios = 0L;
 	}
 	
+	public int getTamVector() {
+		return tamVector;
+	}
+
+	public void setTamVector(int tamVector) {
+		this.tamVector = tamVector;
+	}
+
 	public void incrementarComparaciones() {
 		this.comparaciones++;
 	}
@@ -193,6 +213,7 @@ class DatosEstadisticos{
 	}
 	
 	public void imprimirEstadisticos() {
+		System.out.println("tamaño del vector: " + getTamVector());
 		System.out.println("comparaciones: " + getComparaciones());
 		System.out.println("numeroIntercabios: " + getNumeroIntercabios());
 	}
