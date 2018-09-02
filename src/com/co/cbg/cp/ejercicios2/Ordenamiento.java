@@ -4,6 +4,16 @@ import com.co.cbg.cp.ejercicios1.Ejercicios;
 
 public class Ordenamiento {
 
+	private static long[] vector;
+	
+	private static long[] vectorBurbuja;
+	private static long[] vectorSeleccion;
+	private static long[] vectorHeap;
+	private static long[] vectorShell;
+	
+	//Para búsqueda
+	private static long[] vectorBusquedaSecuencial;
+	private static long[] vectorBusquedaBinaria;
 	
 	public static void main(String[] args){
 		
@@ -17,31 +27,63 @@ public class Ordenamiento {
 		//imprimirVector(vector);
 		
 		//HeapSort     
-        System.out.println("Prueba HeapSort");
-        int tamVector = 10;
-        int i;    
+        //System.out.println("Prueba HeapSort");
+        //int tamVector = 10000;
+        
         /* Accept number of elements */
-        int[] vector = Ejercicios.llenarVector2(tamVector);   
+        //long[] vector = llenarVector(tamVector);   
         /* llenar vector */
         
         /* imprimir vector */
-        System.out.println("Elementos del vector");        
-        imprimirVector(vector);
-        System.out.println();
-        Heapsort(vector);
-        imprimirVector(vector);
+        //System.out.println("Elementos del vector");        
+        //imprimirVector(vector);
+        //System.out.println();
+        //Heapsort(vector);
+        //imprimirVector(vector);
         
         //-------------------------
+		crearVectoresPrueba();
 	}
 	
 	public static void crearVectoresPrueba() {
+		int tamVector = 5;
 		
+		vector = llenarVector(tamVector);
+		//Para ordenar
+		
+		vectorBurbuja = vector.clone();
+		vectorSeleccion = vector.clone();
+		vectorHeap = vector.clone();
+		vectorShell = vector.clone();
+		
+		//Para búsqueda
+		vectorBusquedaSecuencial = vector.clone();
+		vectorBusquedaBinaria = vector.clone();
+		
+		System.out.println("Vectores sin ordenar");;
+		imprimirVector(vector);
+		imprimirVector(vectorBurbuja);
+		imprimirVector(vectorSeleccion);
+		imprimirVector(vectorHeap);
+		imprimirVector(vectorShell);
+		
+		burbuja(vectorBurbuja);
+		seleccion(vectorSeleccion);
+		heapsort(vectorHeap);
+		
+		System.out.println("Vectores luego de ordenar por burbuja");
+		//imprimirVector(vector);
+		imprimirVector(vectorBurbuja);
+		imprimirVector(vectorSeleccion);
+		imprimirVector(vectorHeap);
+		imprimirVector(vectorShell);
 	}
 	
-	public static void burbuja(int[] vector) {
+	public static void burbuja(long[] vector) {
 		
 		int n = vector.length;
 		
+		System.out.println("Ordenamiento Burbuja");
 		DatosEstadisticos datosEstadisticos = new DatosEstadisticos();
 		datosEstadisticos.setTamVector(n);
 		
@@ -62,8 +104,9 @@ public class Ordenamiento {
 		
 	}
 		
-	public static void seleccion(int[] vector) {
+	public static void seleccion(long[] vector) {
 		
+		System.out.println("Ordenamiento Selección");
 		DatosEstadisticos datosEstadisticos = new DatosEstadisticos();
 		int tamVector = vector.length;
 		datosEstadisticos.setTamVector(tamVector);
@@ -94,7 +137,7 @@ public class Ordenamiento {
 		
 	}
 	
-	public static int buscarIndiceDelMenorEnVector(int[] vector, int indiceIzq, int tamVector, DatosEstadisticos datosEstadisticos) {
+	public static int buscarIndiceDelMenorEnVector(long[] vector, int indiceIzq, int tamVector, DatosEstadisticos datosEstadisticos) {
 		
 		//Se toma el primero como el menor
 		int indiceDelMenor = indiceIzq;
@@ -115,7 +158,10 @@ public class Ordenamiento {
 	//HeapSort
 	private static int N;
 	 
-	public static void Heapsort(int vector[]){       
+	public static void heapsort(long vector[]){    
+		
+		System.out.println("Ordenamiento Heap");
+		
 		DatosEstadisticos datosEstadisticos = new DatosEstadisticos();
 		datosEstadisticos.setTamVector(vector.length);
 		
@@ -129,7 +175,7 @@ public class Ordenamiento {
         datosEstadisticos.imprimirEstadisticos();
     }
 	
-	 public static  void heapify(int vector[], DatosEstadisticos datosEstadisticos)
+	 public static  void heapify(long vector[], DatosEstadisticos datosEstadisticos)
 	 {		
 		    N = vector.length-1;
 	        for (int i = N/2; i >= 0; i--) {
@@ -137,7 +183,7 @@ public class Ordenamiento {
 	        }
 	 }
 	 
-	 public static void maxheap(int vector[], int i, DatosEstadisticos datosEstadisticos)
+	 public static void maxheap(long vector[], int i, DatosEstadisticos datosEstadisticos)
 	 { 
 		    int left = 2*i ;
 	        int right = 2*i + 1;
@@ -162,15 +208,15 @@ public class Ordenamiento {
 	 //------------
 	
 	
-	public static void intercambiar(int[] vector, int i, int j, DatosEstadisticos datosEstadisticos) {
-		int temporal = vector[i];
+	public static void intercambiar(long[] vector, int i, int j, DatosEstadisticos datosEstadisticos) {
+		long temporal = vector[i];
 		vector[i] = vector[j];
 		vector[j] = temporal;
 		
 		datosEstadisticos.incrementarNumeroIntercambios();
 	}
 	
-	public static void imprimirVector(int[] vector) {
+	public static void imprimirVector(long[] vector) {
 		
 		int n = vector.length;
 		
@@ -180,6 +226,19 @@ public class Ordenamiento {
 		}
 		System.out.print("]");
 		System.out.println();
+	}
+	
+	public static long[] llenarVector(int num) {
+		
+		long[] vector = new long[num];
+		
+		for(int i=1; i<=num; i++) {
+			long n = (long) (Math.random() * 999999999999l) + 1;
+			//System.out.println("n"+i+ " = " + n);
+			vector[i-1] = n;			
+		}
+		
+		return vector;
 	}
 	
 }
