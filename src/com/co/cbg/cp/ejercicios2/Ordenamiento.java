@@ -38,24 +38,22 @@ public class Ordenamiento {
 	
 	public static void burbuja(int[] vector, int n) {
 		
-		int comparaciones = 0;
-		int numeroIntercabios = 0;
+		DatosEstadisticos datosEstadisticos = new DatosEstadisticos();
 		
 		for(int i=0; i<=(n-1); i++) {
 			
 			for(int j=i+1; j<n; j++) {
 				
-				comparaciones++;
+				datosEstadisticos.incrementarComparaciones();
 				
 				if(vector[i]>vector[j]) {
-					numeroIntercabios++;
-					intercambiar(vector, i, j);
+					//datosEstadisticos.incrementarNumeroIntercambios();
+					intercambiar(vector, i, j, datosEstadisticos);
 				}
 			}
 		}
 		
-		System.out.println("comparaciones: " + comparaciones);
-		System.out.println("numeroIntercabios: " + numeroIntercabios);
+		datosEstadisticos.imprimirEstadisticos();
 		
 	}
 		
@@ -75,9 +73,9 @@ public class Ordenamiento {
 			//System.out.println("indiceDelMenor: " + indiceDelMenor);
 			if(vector[indiceDelMenor] < vector[i]) {
 				
-				datosEstadisticos.incrementarNumeroIntercambios(); 
+				//datosEstadisticos.incrementarNumeroIntercambios(); 
 				
-				intercambiar(vector, i, indiceDelMenor);
+				intercambiar(vector, i, indiceDelMenor, datosEstadisticos);
 			}
 		}
 		
@@ -110,48 +108,58 @@ public class Ordenamiento {
 	//HeapSort
 	private static int N;
 	 
-	public static void Heapsort(int vector[])
-    {       
-		heapify(vector);        
-        for (int i = N; i > 0; i--)
-        {
-            intercambiar(vector,0, i);
+	public static void Heapsort(int vector[]){       
+		DatosEstadisticos datosEstadisticos = new DatosEstadisticos();
+		
+		heapify(vector, datosEstadisticos);        
+        for (int i = N; i > 0; i--){
+            intercambiar(vector,0, i, datosEstadisticos);
             N = N-1;
-            maxheap(vector, 0);
+            maxheap(vector, 0, datosEstadisticos);
         }
+        
+        datosEstadisticos.imprimirEstadisticos();
     }
 	
-	 public static  void heapify(int vector[])
+	 public static  void heapify(int vector[], DatosEstadisticos datosEstadisticos)
 	 {		
 		    N = vector.length-1;
-	        for (int i = N/2; i >= 0; i--)
-	        maxheap(vector, i);       
+	        for (int i = N/2; i >= 0; i--) {
+	        	maxheap(vector, i, datosEstadisticos);
+	        }
 	 }
 	 
-	 public static void maxheap(int vector[], int i)
+	 public static void maxheap(int vector[], int i, DatosEstadisticos datosEstadisticos)
 	 { 
 		    int left = 2*i ;
 	        int right = 2*i + 1;
 	        int max = i;
-	        if (left <= N && vector[left] > vector[i])
+	        
+	        datosEstadisticos.incrementarComparaciones();
+	        if (left <= N && vector[left] > vector[i]) {
 	            max = left;
-	        if (right <= N && vector[right] > vector[max])        
+	        }
+	        datosEstadisticos.incrementarComparaciones();
+	        if (right <= N && vector[right] > vector[max]) {        
 	            max = right;
-	 
+	        }
+	        datosEstadisticos.incrementarComparaciones();
 	        if (max != i)
 	        {
-	            intercambiar(vector, i, max);
-	            maxheap(vector, max);
+	            intercambiar(vector, i, max, datosEstadisticos);
+	            maxheap(vector, max, datosEstadisticos);
 	        }
 	  }
 	 
 	 //------------
 	
 	
-	public static void intercambiar(int[] vector, int i, int j) {
+	public static void intercambiar(int[] vector, int i, int j, DatosEstadisticos datosEstadisticos) {
 		int temporal = vector[i];
 		vector[i] = vector[j];
 		vector[j] = temporal;
+		
+		datosEstadisticos.incrementarNumeroIntercambios();
 	}
 	
 	public static void imprimirVector(int[] vector, int n) {
