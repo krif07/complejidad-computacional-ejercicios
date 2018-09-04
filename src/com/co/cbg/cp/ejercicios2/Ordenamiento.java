@@ -11,7 +11,7 @@ public class Ordenamiento {
 	
 	//Para búsqueda
 	//private long[] vectorBusquedaSecuencial;
-	//private long[] vectorBusquedaBinaria;
+	private long[] vectorBusquedaBinaria;
 	
 	/*public static void main(String[] args){
 		
@@ -43,8 +43,8 @@ public class Ordenamiento {
 		//crearVectoresPrueba();
 	//}
 	
-	public void crearVectoresPrueba() {
-		int tamVector = 1000;
+	public void crearVectoresPrueba(int tamVector) {
+		//int tamVector = 1000;
 		
 		vector = llenarVector(tamVector);
 		//Para ordenar
@@ -56,17 +56,15 @@ public class Ordenamiento {
 		
 		//Para búsqueda
 		//vectorBusquedaSecuencial = vector.clone();
-		//vectorBusquedaBinaria = vector.clone();
+		vectorBusquedaBinaria = vector.clone();
+		heapsort(vectorBusquedaBinaria);
 		
-		System.out.println("Vectores sin ordenar");;
+		System.out.println("Vectore sin ordenar");
 		imprimirVector(vector);
-		imprimirVector(vectorBurbuja);
-		imprimirVector(vectorSeleccion);
-		imprimirVector(vectorHeap);
-		imprimirVector(vectorShell);
 		
+		System.out.println("Vector ordenado");
 		//imprimirVector(vectorBusquedaSecuencial);
-		//imprimirVector(vectorBusquedaBinaria);
+		imprimirVector(vectorBusquedaBinaria);
 		
 	}
 	
@@ -93,6 +91,7 @@ public class Ordenamiento {
 		}
 		
 		datosEstadisticos.imprimirEstadisticos();
+		
 		return datosEstadisticos;
 		
 	}
@@ -123,11 +122,12 @@ public class Ordenamiento {
 		}
 		
 		datosEstadisticos.imprimirEstadisticos();
+		
 		return datosEstadisticos;
 	}
 	
 	
-	public int buscarIndiceDelMenorEnVector(long[] vector, int indiceIzq, int tamVector, DatosEstadisticos datosEstadisticos) {
+	private int buscarIndiceDelMenorEnVector(long[] vector, int indiceIzq, int tamVector, DatosEstadisticos datosEstadisticos) {
 		
 		//Se toma el primero como el menor
 		int indiceDelMenor = indiceIzq;
@@ -163,6 +163,7 @@ public class Ordenamiento {
         }
         
         datosEstadisticos.imprimirEstadisticos();
+        
         return datosEstadisticos;
     }
 	
@@ -253,11 +254,11 @@ public class Ordenamiento {
 	public long[] getVectorBusquedaSecuencial() {
 		return vectorBusquedaSecuencial;
 	}
-
+*/
 	public long[] getVectorBusquedaBinaria() {
 		return vectorBusquedaBinaria;
 	}
-*/
+
 	public int getN() {
 		return N;
 	}

@@ -85,7 +85,7 @@ public class Menu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				ordenamiento = new Ordenamiento();
-				ordenamiento.crearVectoresPrueba();
+				ordenamiento.crearVectoresPrueba(Integer.parseInt(txtTamVector.getText()));
 				
 				busqueda = new Busqueda();
 				
@@ -149,6 +149,8 @@ public class Menu extends JFrame {
 		btnMerge.setEnabled(false);
 		btnMerge.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				
 			}
 		});
 		btnMerge.setBounds(10, 131, 117, 23);
@@ -171,7 +173,7 @@ public class Menu extends JFrame {
 		btnBuscarBinaria.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				DatosEstadisticos datosEstadisticos = busqueda.binaria( Long.parseLong(txtBuscar.getText().trim()), ordenamiento.getVector());
+				DatosEstadisticos datosEstadisticos = busqueda.binaria( Long.parseLong(txtBuscar.getText().trim()), ordenamiento.getVectorBusquedaBinaria());
 				
 				txtTBinaria.setText(datosEstadisticos.getTimeElapsed().toString());
 				txtIBinaria.setText(datosEstadisticos.isDatoEncontrado() + "");
