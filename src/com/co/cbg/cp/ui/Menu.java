@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
+import com.co.cbg.cp.ejercicios2.DatosEstadisticos;
 import com.co.cbg.cp.ejercicios2.Ordenamiento;
 
 public class Menu extends JFrame {
@@ -38,6 +39,7 @@ public class Menu extends JFrame {
 	private JTextField txtIBinaria;
 	
 	private static Ordenamiento ordenamiento;
+	private JButton btnNuevoVector;
 
 	/**
 	 * Launch the application.
@@ -48,8 +50,6 @@ public class Menu extends JFrame {
 				try {
 					Menu frame = new Menu();
 					frame.setVisible(true);
-					
-					ordenamiento = new Ordenamiento();
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -70,29 +70,76 @@ public class Menu extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnGenerarVectores = new JButton("Generar vectores");
+		JButton btnBurbuja = new JButton("Burbuja");
+		JButton btnSeleccion = new JButton("Selecci\u00F3n");
+		JButton btnHeapSort = new JButton("Heap Sort");
+		JButton btnMerge = new JButton("Merge Sort");
+		JButton btnBuscarSecuencial = new JButton("B\u00FAsqueda Secuencial");
+		JButton btnBuscarBinaria = new JButton("B\u00FAsqueda Binaria");
+		
 		btnGenerarVectores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				ordenamiento = new Ordenamiento();
 				ordenamiento.crearVectoresPrueba();
+				btnBurbuja.setEnabled(true);
+				btnSeleccion.setEnabled(true);
+				btnHeapSort.setEnabled(true);
+				btnMerge.setEnabled(true);
+				btnBuscarSecuencial.setEnabled(true);
+				btnBuscarBinaria.setEnabled(true);
+				
+				txtTamVector.setEnabled(false);
+				btnGenerarVectores.setEnabled(false);
 				
 			}
 		});
 		btnGenerarVectores.setBounds(10, 11, 117, 23);
 		contentPane.add(btnGenerarVectores);
 		
-		JButton btnBurbuja = new JButton("Burbuja");
+		btnBurbuja.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				DatosEstadisticos datosEstadisticos = ordenamiento.burbuja(ordenamiento.getVectorBurbuja());
+				txtTBurbuja.setText(datosEstadisticos.getTimeElapsed().toString());
+				txtIBurbuja.setText(datosEstadisticos.getNumeroIntercabios().toString());
+				txtCBurbuja.setText(datosEstadisticos.getComparaciones().toString());
+				
+			}
+		});
+		btnBurbuja.setEnabled(false);
 		btnBurbuja.setBounds(10, 62, 117, 23);
 		contentPane.add(btnBurbuja);
 		
-		JButton btnSeleccin = new JButton("Selecci\u00F3n");
-		btnSeleccin.setBounds(10, 84, 117, 23);
-		contentPane.add(btnSeleccin);
+		btnSeleccion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				DatosEstadisticos datosEstadisticos = ordenamiento.seleccion(ordenamiento.getVectorSeleccion());
+				txtTSeleccion.setText(datosEstadisticos.getTimeElapsed().toString());
+				txtISeleccion.setText(datosEstadisticos.getNumeroIntercabios().toString());
+				txtCSeleccion.setText(datosEstadisticos.getComparaciones().toString());
+				
+			}
+		});
+		btnSeleccion.setEnabled(false);
+		btnSeleccion.setBounds(10, 84, 117, 23);
+		contentPane.add(btnSeleccion);
 		
-		JButton btnHeapSort = new JButton("Heap Sort");
+		btnHeapSort.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				DatosEstadisticos datosEstadisticos = ordenamiento.heapsort(ordenamiento.getVectorHeap());
+				txtTHeap.setText(datosEstadisticos.getTimeElapsed().toString());
+				txtIHeap.setText(datosEstadisticos.getNumeroIntercabios().toString());
+				txtCHeap.setText(datosEstadisticos.getComparaciones().toString());
+				
+			}
+		});
+		btnHeapSort.setEnabled(false);
 		btnHeapSort.setBounds(10, 109, 117, 23);
 		contentPane.add(btnHeapSort);
 		
-		JButton btnMerge = new JButton("Merge Sort");
+		btnMerge.setEnabled(false);
 		btnMerge.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -100,11 +147,19 @@ public class Menu extends JFrame {
 		btnMerge.setBounds(10, 131, 117, 23);
 		contentPane.add(btnMerge);
 		
-		JButton btnBuscarSecuencial = new JButton("B\u00FAsqueda Secuencial");
+		btnBuscarSecuencial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnBuscarSecuencial.setEnabled(false);
 		btnBuscarSecuencial.setBounds(10, 211, 117, 23);
 		contentPane.add(btnBuscarSecuencial);
 		
-		JButton btnBuscarBinaria = new JButton("B\u00FAsqueda Binaria");
+		btnBuscarBinaria.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnBuscarBinaria.setEnabled(false);
 		btnBuscarBinaria.setBounds(10, 234, 117, 23);
 		contentPane.add(btnBuscarBinaria);
 		
@@ -226,6 +281,25 @@ public class Menu extends JFrame {
 		txtIMerge.setBounds(342, 164, 65, 20);
 		panel.add(txtIMerge);
 		txtIMerge.setColumns(10);
+		
+		btnNuevoVector = new JButton("Nuevo vector");
+		btnNuevoVector.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				btnBurbuja.setEnabled(false);
+				btnSeleccion.setEnabled(false);
+				btnHeapSort.setEnabled(false);
+				btnMerge.setEnabled(false);
+				btnBuscarSecuencial.setEnabled(false);
+				btnBuscarBinaria.setEnabled(false);
+				
+				txtTamVector.setEnabled(true);
+				btnGenerarVectores.setEnabled(true);
+				
+			}
+		});
+		btnNuevoVector.setBounds(255, 4, 111, 23);
+		panel.add(btnNuevoVector);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(137, 211, 417, 85);

@@ -1,21 +1,19 @@
 package com.co.cbg.cp.ejercicios2;
 
-import java.time.Duration;
-import java.time.Instant;
 import com.co.cbg.cp.ejercicios1.Ejercicios;
 
 public class Ordenamiento {
 
-	private static long[] vector;
+	private long[] vector;
 	
-	private static long[] vectorBurbuja;
-	private static long[] vectorSeleccion;
-	private static long[] vectorHeap;
-	private static long[] vectorShell;
+	private long[] vectorBurbuja;
+	private long[] vectorSeleccion;
+	private long[] vectorHeap;
+	private long[] vectorShell;
 	
 	//Para búsqueda
-	private static long[] vectorBusquedaSecuencial;
-	private static long[] vectorBusquedaBinaria;
+	private long[] vectorBusquedaSecuencial;
+	private long[] vectorBusquedaBinaria;
 	
 	/*public static void main(String[] args){
 		
@@ -47,7 +45,7 @@ public class Ordenamiento {
 		//crearVectoresPrueba();
 	//}
 	
-	public static void crearVectoresPrueba() {
+	public void crearVectoresPrueba() {
 		int tamVector = 1000;
 		
 		vector = llenarVector(tamVector);
@@ -69,19 +67,10 @@ public class Ordenamiento {
 		imprimirVector(vectorHeap);
 		imprimirVector(vectorShell);
 		
-		burbuja(vectorBurbuja);
-		seleccion(vectorSeleccion);
-		heapsort(vectorHeap);
-		
-		System.out.println("Vectores luego de ordenar");
-		//imprimirVector(vector);
-		imprimirVector(vectorBurbuja);
-		imprimirVector(vectorSeleccion);
-		imprimirVector(vectorHeap);
-		imprimirVector(vectorShell);
 	}
 	
-	public static void burbuja(long[] vector) {
+
+	public DatosEstadisticos burbuja(long[] vector) {
 		
 		int n = vector.length;
 		
@@ -103,10 +92,11 @@ public class Ordenamiento {
 		}
 		
 		datosEstadisticos.imprimirEstadisticos();
+		return datosEstadisticos;
 		
 	}
 		
-	public static void seleccion(long[] vector) {
+	public DatosEstadisticos seleccion(long[] vector) {
 		
 		System.out.println("Ordenamiento Selección");
 		DatosEstadisticos datosEstadisticos = new DatosEstadisticos();
@@ -132,14 +122,11 @@ public class Ordenamiento {
 		}
 		
 		datosEstadisticos.imprimirEstadisticos();
+		return datosEstadisticos;
 	}
 	
-	public static void quickSort(Double[] vector, int indiceIzq, int indiceDer) {
-		
-		
-	}
 	
-	public static int buscarIndiceDelMenorEnVector(long[] vector, int indiceIzq, int tamVector, DatosEstadisticos datosEstadisticos) {
+	public int buscarIndiceDelMenorEnVector(long[] vector, int indiceIzq, int tamVector, DatosEstadisticos datosEstadisticos) {
 		
 		//Se toma el primero como el menor
 		int indiceDelMenor = indiceIzq;
@@ -158,9 +145,9 @@ public class Ordenamiento {
 	}
 	
 	//HeapSort
-	private static int N;
+	private int N;
 	 
-	public static void heapsort(long vector[]){    
+	public DatosEstadisticos heapsort(long vector[]){    
 		
 		System.out.println("Ordenamiento Heap");
 		
@@ -175,18 +162,17 @@ public class Ordenamiento {
         }
         
         datosEstadisticos.imprimirEstadisticos();
+        return datosEstadisticos;
     }
 	
-	 public static  void heapify(long vector[], DatosEstadisticos datosEstadisticos)
-	 {		
+	 private void heapify(long vector[], DatosEstadisticos datosEstadisticos){		
 		    N = vector.length-1;
 	        for (int i = N/2; i >= 0; i--) {
 	        	maxheap(vector, i, datosEstadisticos);
 	        }
 	 }
 	 
-	 public static void maxheap(long vector[], int i, DatosEstadisticos datosEstadisticos)
-	 { 
+	 private void maxheap(long vector[], int i, DatosEstadisticos datosEstadisticos){ 
 		    int left = 2*i ;
 	        int right = 2*i + 1;
 	        int max = i;
@@ -210,7 +196,7 @@ public class Ordenamiento {
 	 //------------
 	
 	
-	public static void intercambiar(long[] vector, int i, int j, DatosEstadisticos datosEstadisticos) {
+	private void intercambiar(long[] vector, int i, int j, DatosEstadisticos datosEstadisticos) {
 		long temporal = vector[i];
 		vector[i] = vector[j];
 		vector[j] = temporal;
@@ -218,7 +204,7 @@ public class Ordenamiento {
 		datosEstadisticos.incrementarNumeroIntercambios();
 	}
 	
-	public static void imprimirVector(long[] vector) {
+	private void imprimirVector(long[] vector) {
 		
 		int n = vector.length;
 		
@@ -230,7 +216,7 @@ public class Ordenamiento {
 		System.out.println();
 	}
 	
-	public static long[] llenarVector(int num) {
+	private long[] llenarVector(int num) {
 		
 		long[] vector = new long[num];
 		
@@ -243,64 +229,38 @@ public class Ordenamiento {
 		return vector;
 	}
 	
+	public long[] getVector() {
+		return vector;
+	}
+
+	public long[] getVectorBurbuja() {
+		return vectorBurbuja;
+	}
+
+	public long[] getVectorSeleccion() {
+		return vectorSeleccion;
+	}
+
+	public long[] getVectorHeap() {
+		return vectorHeap;
+	}
+
+	public long[] getVectorShell() {
+		return vectorShell;
+	}
+
+	public long[] getVectorBusquedaSecuencial() {
+		return vectorBusquedaSecuencial;
+	}
+
+	public long[] getVectorBusquedaBinaria() {
+		return vectorBusquedaBinaria;
+	}
+
+	public int getN() {
+		return N;
+	}
+	
 }
 
-class DatosEstadisticos{
-	
-	private int tamVector;
-	private Long comparaciones;
-	private Long numeroIntercabios;
-	
-	Instant start;
-	
-	DatosEstadisticos(){
-		this.tamVector = 10;
-		this.comparaciones = 0L;
-		this.numeroIntercabios = 0L;
-		
-		start = Instant.now();
-	}
-	
-	public int getTamVector() {
-		return tamVector;
-	}
 
-	public void setTamVector(int tamVector) {
-		this.tamVector = tamVector;
-	}
-
-	public void incrementarComparaciones() {
-		this.comparaciones++;
-	}
-	
-	public void incrementarNumeroIntercambios() {
-		this.numeroIntercabios++;
-	}
-	
-	public void imprimirEstadisticos() {
-		
-		Instant end = Instant.now();
-		
-		System.out.println("tamaño del vector: " + getTamVector());
-		System.out.println("comparaciones: " + getComparaciones());
-		System.out.println("numeroIntercabios: " + getNumeroIntercabios());
-		
-		Duration timeElapsed = Duration.between(start, end);
-		System.out.println("Tiempo tomado: "+ timeElapsed.toMillis() +" milisegundos");
-		System.out.println();
-	}
-	
-	public Long getComparaciones() {
-		return comparaciones;
-	}
-	public void setComparaciones(Long comparaciones) {
-		this.comparaciones = comparaciones;
-	}
-	public Long getNumeroIntercabios() {
-		return numeroIntercabios;
-	}
-	public void setNumeroIntercabios(Long numeroIntercabios) {
-		this.numeroIntercabios = numeroIntercabios;
-	}	
-	
-}
