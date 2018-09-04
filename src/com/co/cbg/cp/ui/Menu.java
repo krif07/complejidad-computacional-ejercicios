@@ -150,6 +150,10 @@ public class Menu extends JFrame {
 		btnMerge.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				DatosEstadisticos datosEstadisticos = ordenamiento.sortMerge(ordenamiento.getVectorMerge());
+				txtTMerge.setText(datosEstadisticos.getTimeElapsed().toString());
+				txtIMerge.setText(datosEstadisticos.getNumeroIntercabios().toString());
+				txtCMerge.setText(datosEstadisticos.getComparaciones().toString());
 				
 			}
 		});
