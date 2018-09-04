@@ -17,7 +17,7 @@ public class Ordenamiento {
 	private static long[] vectorBusquedaSecuencial;
 	private static long[] vectorBusquedaBinaria;
 	
-	public static void main(String[] args){
+	/*public static void main(String[] args){
 		
 		//int tamVector = 100;
 		
@@ -44,8 +44,8 @@ public class Ordenamiento {
         //imprimirVector(vector);
         
         //-------------------------
-		crearVectoresPrueba();
-	}
+		//crearVectoresPrueba();
+	//}
 	
 	public static void crearVectoresPrueba() {
 		int tamVector = 1000;
