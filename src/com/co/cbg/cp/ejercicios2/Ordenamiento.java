@@ -263,6 +263,49 @@ public class Ordenamiento {
 		return N;
 	}
 	
+	public void sortmerge(long[] a) {
+        int n = a.length;
+        long[] aux = new long[n];
+        sortmerge(a, aux, 0, n);
+    }
+	
+	public void sortmerge(long[] a, long[] aux, int lo, int hi) {
+
+        // caso base
+        if (hi - lo <= 1) return;
+
+        // ordena cada mitad recursivamente
+        int mid = lo + (hi - lo) / 2;
+        sortmerge(a, aux, lo, mid);
+        sortmerge(a, aux, mid, hi);
+
+        // merge back together
+        merge(a, aux, lo, mid, hi);
+    }
+	
+	public void sort(long[] a, int lo, int hi) {
+        int n = hi - lo + 1;
+        long[] aux = new long[n];
+        sortmerge(a, aux, lo, hi);
+    }
+	
+	private void merge(long[] a, long[] aux, int lo, int mid, int hi) {
+        int i = lo, j = mid;
+        for (int k = lo; k < hi; k++) {
+            if      (i == mid)                 
+            	aux[k] = a[j++];
+            else if (j == hi)                  
+            	aux[k] = a[i++];
+            else if (a[j] < a[i])
+				aux[k] = a[j++];
+            else                               
+            	aux[k] = a[i++];
+        }
+ 
+        for (int k = lo; k < hi; k++)
+            a[k] = aux[k];
+    }
+	
 }
 
 
