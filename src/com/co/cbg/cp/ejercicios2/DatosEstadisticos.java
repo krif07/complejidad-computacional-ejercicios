@@ -9,6 +9,7 @@ public class DatosEstadisticos{
 	private Long comparaciones;
 	private Long numeroIntercabios;
 	private Duration timeElapsed;
+	private boolean datoEncontrado;
 	
 	Instant start;
 	
@@ -16,10 +17,19 @@ public class DatosEstadisticos{
 		this.tamVector = 10;
 		this.comparaciones = 0L;
 		this.numeroIntercabios = 0L;
+		this.datoEncontrado = false;
 		
 		start = Instant.now();
 	}
 	
+	public boolean isDatoEncontrado() {
+		return datoEncontrado;
+	}
+
+	public void setDatoEncontrado(boolean datoEncontrado) {
+		this.datoEncontrado = datoEncontrado;
+	}
+
 	public int getTamVector() {
 		return tamVector;
 	}

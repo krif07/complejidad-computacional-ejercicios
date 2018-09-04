@@ -1,7 +1,5 @@
 package com.co.cbg.cp.ejercicios2;
 
-import com.co.cbg.cp.ejercicios1.Ejercicios;
-
 public class Ordenamiento {
 
 	private long[] vector;
@@ -12,8 +10,8 @@ public class Ordenamiento {
 	private long[] vectorShell;
 	
 	//Para búsqueda
-	private long[] vectorBusquedaSecuencial;
-	private long[] vectorBusquedaBinaria;
+	//private long[] vectorBusquedaSecuencial;
+	//private long[] vectorBusquedaBinaria;
 	
 	/*public static void main(String[] args){
 		
@@ -57,8 +55,8 @@ public class Ordenamiento {
 		vectorShell = vector.clone();
 		
 		//Para búsqueda
-		vectorBusquedaSecuencial = vector.clone();
-		vectorBusquedaBinaria = vector.clone();
+		//vectorBusquedaSecuencial = vector.clone();
+		//vectorBusquedaBinaria = vector.clone();
 		
 		System.out.println("Vectores sin ordenar");;
 		imprimirVector(vector);
@@ -66,6 +64,9 @@ public class Ordenamiento {
 		imprimirVector(vectorSeleccion);
 		imprimirVector(vectorHeap);
 		imprimirVector(vectorShell);
+		
+		//imprimirVector(vectorBusquedaSecuencial);
+		//imprimirVector(vectorBusquedaBinaria);
 		
 	}
 	
@@ -248,7 +249,7 @@ public class Ordenamiento {
 	public long[] getVectorShell() {
 		return vectorShell;
 	}
-
+/*
 	public long[] getVectorBusquedaSecuencial() {
 		return vectorBusquedaSecuencial;
 	}
@@ -256,7 +257,7 @@ public class Ordenamiento {
 	public long[] getVectorBusquedaBinaria() {
 		return vectorBusquedaBinaria;
 	}
-
+*/
 	public int getN() {
 		return N;
 	}

@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 
 import com.co.cbg.cp.ejercicios2.DatosEstadisticos;
 import com.co.cbg.cp.ejercicios2.Ordenamiento;
+import com.co.cbg.cp.ejercicios2.Busqueda;
 
 public class Menu extends JFrame {
 
@@ -38,8 +39,11 @@ public class Menu extends JFrame {
 	private JTextField txtISecuencial;
 	private JTextField txtIBinaria;
 	
-	private static Ordenamiento ordenamiento;
+	private  Ordenamiento ordenamiento;
+	private Busqueda busqueda;
 	private JButton btnNuevoVector;
+	private JLabel lblEncontrado;
+	private JLabel lblEncontrado_1;
 
 	/**
 	 * Launch the application.
@@ -82,6 +86,9 @@ public class Menu extends JFrame {
 				
 				ordenamiento = new Ordenamiento();
 				ordenamiento.crearVectoresPrueba();
+				
+				busqueda = new Busqueda();
+				
 				btnBurbuja.setEnabled(true);
 				btnSeleccion.setEnabled(true);
 				btnHeapSort.setEnabled(true);
@@ -149,6 +156,12 @@ public class Menu extends JFrame {
 		
 		btnBuscarSecuencial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				DatosEstadisticos datosEstadisticos = busqueda.secuencial( Long.parseLong(txtBuscar.getText().trim()), ordenamiento.getVector());
+			
+				txtTSecuencial.setText(datosEstadisticos.getTimeElapsed().toString());
+				txtISecuencial.setText(datosEstadisticos.isDatoEncontrado()+"");
+				txtCSecuencial.setText(datosEstadisticos.getComparaciones().toString());
 			}
 		});
 		btnBuscarSecuencial.setEnabled(false);
@@ -157,6 +170,13 @@ public class Menu extends JFrame {
 		
 		btnBuscarBinaria.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				DatosEstadisticos datosEstadisticos = busqueda.binaria( Long.parseLong(txtBuscar.getText().trim()), ordenamiento.getVector());
+				
+				txtTBinaria.setText(datosEstadisticos.getTimeElapsed().toString());
+				txtIBinaria.setText(datosEstadisticos.isDatoEncontrado() + "");
+				txtCBinaria.setText(datosEstadisticos.getComparaciones().toString());
+				
 			}
 		});
 		btnBuscarBinaria.setEnabled(false);
@@ -350,7 +370,12 @@ public class Menu extends JFrame {
 		panel_1.add(txtIBinaria);
 		txtIBinaria.setColumns(10);
 		
+		lblEncontrado_1 = new JLabel("Encontrado");
+		lblEncontrado_1.setBounds(342, 0, 65, 14);
+		panel_1.add(lblEncontrado_1);
+		
 		txtBuscar = new JTextField();
+		txtBuscar.setText("10");
 		txtBuscar.setBounds(10, 279, 117, 20);
 		contentPane.add(txtBuscar);
 		txtBuscar.setColumns(10);
@@ -358,5 +383,9 @@ public class Menu extends JFrame {
 		JLabel lblNmeroABuscar = new JLabel("N\u00FAmero a buscar");
 		lblNmeroABuscar.setBounds(10, 265, 104, 14);
 		contentPane.add(lblNmeroABuscar);
+		
+		lblEncontrado = new JLabel("Encontrado");
+		lblEncontrado.setBounds(478, 211, 46, 14);
+		contentPane.add(lblEncontrado);
 	}
 }
