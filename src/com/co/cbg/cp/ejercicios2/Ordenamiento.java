@@ -54,15 +54,15 @@ public class Ordenamiento {
 
 		// Para búsqueda
 		// vectorBusquedaSecuencial = vector.clone();
-		vectorBusquedaBinaria = vector.clone();
-		heapsort(vectorBusquedaBinaria);
+		//vectorBusquedaBinaria = vector.clone();
+		//heapsort(vectorBusquedaBinaria);
 
 		System.out.println("Vectore sin ordenar");
-		imprimirVector(vector);
+		//imprimirVector(vector);
 
 		System.out.println("Vector ordenado");
 		// imprimirVector(vectorBusquedaSecuencial);
-		imprimirVector(vectorBusquedaBinaria);
+		//imprimirVector(vectorBusquedaBinaria);
 
 	}
 
@@ -81,7 +81,7 @@ public class Ordenamiento {
 				datosEstadisticos.incrementarComparaciones();
 
 				if (vector[i] > vector[j]) {
-					// datosEstadisticos.incrementarNumeroIntercambios();
+					
 					intercambiar(vector, i, j, datosEstadisticos);
 				}
 			}
@@ -109,10 +109,7 @@ public class Ordenamiento {
 
 			datosEstadisticos.incrementarComparaciones();
 
-			// System.out.println("indiceDelMenor: " + indiceDelMenor);
 			if (vector[indiceDelMenor] < vector[i]) {
-
-				// datosEstadisticos.incrementarNumeroIntercambios();
 
 				intercambiar(vector, i, indiceDelMenor, datosEstadisticos);
 			}
